@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name 74f521)(type KiCad)(uri ${KIPRJMOD}/74f521.pretty)(options "")(descr ""))
+  (lib (name switch)(type KiCad)(uri /home/kevin/Development/my_projects/CAD/8bit_computer/slide_switch.pretty)(options "")(descr ""))
+  (lib (name pad_array)(type KiCad)(uri ${KIPRJMOD}/pad_array.pretty)(options "")(descr ""))
+)

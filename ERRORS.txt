@@ -1,0 +1,64 @@
+--- VERSION 1.1 ERRORS
+
+U34 shift register is wired for ASL instead of ASR
+
+U18 ZF detector is wired to incorrect bus (should be B_IN, but wire lables are for S*)
+
+Old '1.0' silkscreen marking left over 
+
+ASR control code silkscreen marking incorrect (labeled as ROR_OE, should be ASR_OE)
+
+Changes for next version
+    * Decouple ALU_SUB from adder CARRY IN pin. Make ALU_CE attached to it's own control line
+        Allows for addition and subtraction by one in microcode
+    * Add MDR, will simplify microcode and allow for more complicated operations
+    * Allow PC_OUT to write to databus, will allow for subroutine jumps without hardcoding return
+        addresses
+    * Use left-over OR gate to feed ALU_CF_OUT back into adder carry in:
+        carry_in = (ALU_CF_OUT | ALU_CF_IN)    
+    * Remove HALT control code 
+        Rather than it stopping the clock, halt just points to an empty instruction in
+        the lookup table. Essentially, a 'trap' opcode that never ends. 
+
+
+
+
+
+
+
+
+
+
+
+--- VERSION 1.0 ERRORS
+
+Data bus IO to Arduino does not map cleanly to ports
+
+RESET_BTN tag not connected to RESET_PC tag (should be combined into one tag)
+
+DEP1 switch is connected to CARRY IN on U28
+
+Buttons are not cleanly laid out (minor issue)
+
+Pulldown resistors should be added to the 595's lines that control component OEs to prevent startup 
+race condition
+
+CARRY IN on parallel shift register should be pulled to ground and not left floating
+
+PC_LOAD is being driven from two sources (shift reg and or gate). PC_LOAD should not be driven from shift register
+
+P Shift register U6 has floating input pin (D4) that needs to be grounded)
+
+Unused pins on U13 (8 9 10) floating
+
+RAM WE QUALIFICATION BUG - RAM WE needs to be qualified by P0
+
+
+
+*** Additions for next version ***
+
+Add bus tranciever to allow PC output to databus
+
+Use unused AND and OR gates to allow for circular shifting (A + A = A << 1)
+
+Add NAND gate to ALU to allow for logic operations
